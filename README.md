@@ -1,1 +1,1 @@
-# device_Infinix_S4
+# recovery_Infinix_S4

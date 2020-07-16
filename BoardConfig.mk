@@ -18,20 +18,21 @@ DEVICE_PATH := device/Infinix/S4
 
 # Platform
 TARGET_BOARD_PLATFORM := mt6765
-TARGET_BOOTLOADER_BOARD_NAME := mt6765
+TARGET_BOOTLOADER_BOARD_NAME := CY-X626-H624-J
 TARGET_NO_BOOTLOADER := true
 PLATFORM_SDK_VERSION := 28
 
 # Resolution
 TARGET_SCREEN_WIDTH := 720
-TARGET_SCREEN_HEIGHT := 1440
+TARGET_SCREEN_HEIGHT := 1520
 
 # Architecture
-TARGET_ARCH := arm64
+# Architecture
+TARGET_ARCH := arm
 TARGET_ARCH_VARIANT := armv8-a
-TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_CPU_VARIANT := cortex-a53
+TARGET_CPU_VARIANT := generic
 TARGET_CPU_VARIANT_RUNTIME := cortex-a53
 TARGET_USES_64_BIT_BINDER := true
 
@@ -62,15 +63,28 @@ TARGET_PREBUILT_KERNEL := $(DEVICE_PATH)/prebuilt/zImage
 BOARD_INCLUDE_RECOVERY_DTBO := true
 BOARD_PREBUILT_DTBOIMAGE := $(DEVICE_PATH)/prebuilt/dtbo.img
 
+# system.prop
+TARGET_SYSTEM_PROP := $(LOCAL_PATH)/system.prop
+
 # Recovery
 RECOVERY_SDCARD_ON_DATA := true
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
 
+# Crypto
+TW_INCLUDE_CRYPTO := true
+TW_CRYPTO_FS_TYPE := "ext4"
+TW_CRYPTO_REAL_BLKDEV := "/dev/block/platform/bootdevice/by-name/userdata"
+TW_CRYPTO_MNT_POINT := "/data"
+TW_CRYPTO_FS_OPTIONS := "nosuid,nodev,noatime,discard,noauto_da_alloc,barrier=0,data=ordered"
+
+TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
+
 # TWRP
 TW_DEVICE_VERSION := $(shell date -u +"%Y%m%d")
 TW_NO_SCREEN_BLANK := true
 TW_EXTRA_LANGUAGES := true
+TW_DEFAULT_LANGUAGE := en
 TW_THEME := portrait_hdpi
 TW_USE_TOOLBOX := true
 TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/etc/twrp.fstab
@@ -78,8 +92,3 @@ TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_EXCLUDE_TWRPAPP := true
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_INCLUDE_CRYPTO := true
-TW_CRYPTO_USE_SYSTEM_VOLD := hwservicemanager keymaster-3-0
-TW_CRYPTO_SYSTEM_VOLD_MOUNT := vendor
-
-# Vold
-TARGET_USE_CUSTOM_LUN_FILE_PATH := /config/usb_gadget/g1/functions/mass_storage.0/lun.%d/file

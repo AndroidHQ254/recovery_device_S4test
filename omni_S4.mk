@@ -41,12 +41,4 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
 	ro.vendor.build.security_patch=2029-10-31 \
     ro.allow.mock.location=0
 	
-PRODUCT_BUILD_PROP_OVERRIDES += \
-	TARGET_DEVICE=S4 \
-	PRODUCT_NAME=S4
-	
-PRODUCT_SYSTEM_PROPERTY_BLACKLIST += \
-	ro.bootimage.build.date.utc \
-	ro.build.date.utc
-
 PRODUCT_GMS_CLIENTID_BASE := android-transsion-infinix-rev1

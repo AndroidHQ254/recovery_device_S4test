@@ -94,7 +94,7 @@ BOARD_USES_METADATA_PARTITION := true
 TW_CUSTOM_CPU_TEMP_PATH := /sys/devices/virtual/thermal/thermal_zone1/temp
 
 # TWRP
-TW_DEVICE_VERSION := $(shell date -u +"%Y%m%d")
+TW_DEVICE_VERSION := $(shell date -u +"%Y%m%d") | DennisMurimi | X626
 TW_NO_SCREEN_BLANK := true
 TW_EXTRA_LANGUAGES := true
 TW_DEFAULT_LANGUAGE := en
